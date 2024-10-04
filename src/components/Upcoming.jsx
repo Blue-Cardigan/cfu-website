@@ -15,8 +15,9 @@ export const Upcoming = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="py-16"
     >
-      <h2 className="text-3xl font-bold text-blue-600 mb-8 text-center">Upcoming Events</h2>
+      <h2 className="text-3xl font-bold text-blue-600 mb-12 text-center">Upcoming <span className="bg-yellow-300 px-2">Events</span></h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {events.map((event, index) => (
           <motion.div
@@ -24,9 +25,9 @@ export const Upcoming = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Card>
+            <Card className="h-full">
               <CardHeader>
-                <CardTitle>{event.title}</CardTitle>
+                <CardTitle className="text-blue-600">{event.title}</CardTitle>
                 <CardDescription>{event.date}</CardDescription>
               </CardHeader>
               <CardContent>

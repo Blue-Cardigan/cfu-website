@@ -11,7 +11,7 @@ const Index = () => {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <Carousel />
-      <div className="container mx-auto px-4 py-8 space-y-16">
+      <div className="container mx-auto px-4 py-16 space-y-32">
         <Home />
         <Upcoming />
         <AboutUs />

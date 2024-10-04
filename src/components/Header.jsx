@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 export const Header = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (

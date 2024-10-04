@@ -9,10 +9,10 @@ export const Donate = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="text-center"
+      className="text-center py-16"
     >
-      <h2 className="text-3xl font-bold text-blue-600 mb-8">Support Our Cause</h2>
-      <p className="text-xl text-gray-600 mb-8">
+      <h2 className="text-3xl font-bold text-blue-600 mb-12">Support Our <span className="bg-yellow-300 px-2">Cause</span></h2>
+      <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
         Your donation helps us support Ukrainian artists and creatives in the UK. Every contribution makes a difference.
       </p>
       <motion.div
@@ -21,7 +21,7 @@ export const Donate = () => {
       >
         <Button
           size="lg"
-          className="bg-blue-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition-colors"
+          className="bg-blue-600 text-white px-12 py-6 rounded-full text-xl font-semibold hover:bg-blue-700 transition-colors"
         >
           Donate Now
         </Button>
