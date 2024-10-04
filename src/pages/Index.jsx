@@ -1,11 +1,21 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import { Carousel } from '@/components/Carousel';
+import { Header } from '@/components/Header';
+import { Home } from '@/components/Home';
+import { Upcoming } from '@/components/Upcoming';
+import { AboutUs } from '@/components/AboutUs';
+import { Donate } from '@/components/Donate';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      <Carousel />
+      <div className="container mx-auto px-4 py-8 space-y-16">
+        <Home />
+        <Upcoming />
+        <AboutUs />
+        <Donate />
       </div>
     </div>
   );
