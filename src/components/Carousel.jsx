@@ -2,9 +2,14 @@ import React from 'react';
 import { Carousel as CarouselComponent, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 
 const images = [
-  '/placeholder.svg',
-  '/placeholder.svg',
-  '/placeholder.svg',
+  '/carousel/1.jpg',
+  '/carousel/2.jpg',
+  '/carousel/3.jpg',
+  '/carousel/4.jpg',
+  '/carousel/5.jpg',
+  '/carousel/6.jpg',
+  '/carousel/7.jpg',
+  '/carousel/8.jpg',
 ];
 
 export const Carousel = () => {
