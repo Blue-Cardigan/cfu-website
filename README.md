@@ -1,70 +1,48 @@
-# Welcome to your GPT Engineer project
+## How To Edit Events Which Appear on the C4U Website
 
-## Project info
+1. Find the event ID on lu.ma > manage > more > Embed Event > 
 
-**URL**: https://run.gptengineer.app/projects/6d901705-7592-4b84-b562-33ecf8f58e8c/improve
+```
+<a
+  href="https://lu.ma/event/evt-9NdwGwCGgfXmWsU"
+  class="luma-checkout--button"
+  data-luma-action="checkout"
+  data-luma-event-id="evt-9NdwGwCGgfXmWsU" <<<<<< YOU WANT THIS ID
+>
+  Register for Event
+</a>
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use GPT Engineer**
-
-Simply visit the GPT Engineer project at [GPT Engineer](https://gptengineer.app/projects/6d901705-7592-4b84-b562-33ecf8f58e8c/improve) and start prompting.
-
-Changes made via gptengineer.app will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in the GPT Engineer UI.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
 ```
 
-**Edit a file directly in GitHub**
+2. Add the ID at the top of the list in events.json e.g
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```json
+{
+  "events": [
+    {
+      "id": "PASTE_ID_HERE"
+    },
+    {
+      "id": "evt-7IIGiNQSemkFBOB"
+    }
+  ]
+} 
+```
 
-**Use GitHub Codespaces**
+3. Commit your changes to GitHub:
+   - Go to the [events.json file](https://github.com/Blue-Cardigan/cfu-website/blob/main/src/data/events.json) on GitHub
+   - Click the pencil icon (✏️) in the top right corner to edit the file
+   - Make your changes to the file
+   - Scroll to the bottom of the page
+   - Under "Commit changes":
+     - Add a brief description like "Added new event: [Event Name]"
+     - Select "Commit directly to the main branch"
+     - Click the green "Commit changes" button
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The website will automatically update with your new event within a few minutes. If you don't see your changes after 5 minutes... contact me!
 
-## What technologies are used for this project?
-
-This project is built with .
-
-- Vite
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-All GPT Engineer projects can be deployed directly via the GPT Engineer app.
-
-Simply visit your project at [GPT Engineer](https://gptengineer.app/projects/6d901705-7592-4b84-b562-33ecf8f58e8c/improve) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.gptengineer.app/tips-tricks/custom-domain/)
+**Important Notes:**
+- Make sure to keep the JSON format exactly as shown (including the commas and brackets)
+- Events will be shown on the website in order, with the one at the top of the list first on the page.
+- Double-check the event ID is correct before committing
