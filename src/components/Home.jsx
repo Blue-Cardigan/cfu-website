@@ -26,7 +26,36 @@ export const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          Welcome to <span className="bg-yellow-300 px-3 py-1 rounded-lg">Creatives for Ukraine</span>
+          Welcome to{" "}
+          <span className="relative inline-block">
+            <motion.span 
+              className="relative z-10 px-3 py-1"
+            >
+              Creatives for Ukraine
+            </motion.span>
+            <motion.svg
+              viewBox="0 0 300 50"
+              className="absolute inset-0 w-full h-full"
+              initial="hidden"
+              animate="visible"
+              preserveAspectRatio="none"
+            >
+              <motion.path
+                d="M0,25 C75,25 75,25 150,25 C225,25 225,25 300,25"
+                fill="none"
+                stroke="#FCD34D"
+                strokeWidth="40"
+                className="stroke-yellow-300"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ 
+                  duration: 3,
+                  delay: 1.5,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.svg>
+          </span>
         </motion.h2>
         
         <motion.p 
