@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
-import events from '../config/events.json';
+import events from '../data/events.json';
 
 export const Upcoming = () => {
   return (

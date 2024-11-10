@@ -1,3 +1,10 @@
 {
-  "events": [test]
-} 
+    "events": [
+      {
+        "id": "evt-9NdwGwCGgfXmWsU"
+      },
+      {
+        "id": "evt-7IIGiNQSemkFBOB"
+      }
+    ]
+  } 

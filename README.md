@@ -15,7 +15,12 @@
 <script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
 ```
 
-2. Add the ID at the top of the list in events.json e.g
+2. Go to [events.json file](https://github.com/Blue-Cardigan/cfu-website/blob/main/src/data/events.json)
+
+
+3. Click the pencil icon (✏️) in the top right corner to edit the file
+
+4. Add the event id as a new entry to the file
 
 ```json
 {
@@ -30,17 +35,11 @@
 } 
 ```
 
-3. Commit your changes to GitHub:
-   - Go to the [events.json file](https://github.com/Blue-Cardigan/cfu-website/blob/main/src/data/events.json) on GitHub
-   - Click the pencil icon (✏️) in the top right corner to edit the file
-   - Make your changes to the file
-   - Scroll to the bottom of the page
-   - Under "Commit changes":
-     - Add a brief description like "Added new event: [Event Name]"
-     - Select "Commit directly to the main branch"
-     - Click the green "Commit changes" button
+Hot tip: Copy and paste a previous event to avoid making formatting errors
 
-The website will automatically update with your new event within a few minutes. If you don't see your changes after 5 minutes... contact me!
+5. Click the big green 'Commit changes...' button, then click 'Commit changes' in the popup (No need to add a long description).
+
+6. The website will automatically update with your new event within a few minutes. If you don't see your changes after 5 minutes... contact me!
 
 **Important Notes:**
 - Make sure to keep the JSON format exactly as shown (including the commas and brackets)
