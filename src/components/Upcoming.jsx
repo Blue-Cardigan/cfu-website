@@ -1,12 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-
-const events = [
-  { title: 'Art Exhibition', date: 'May 15, 2024', description: 'Showcasing works from Ukrainian artists' },
-  { title: 'Charity Concert', date: 'June 2, 2024', description: 'Live performances by Ukrainian musicians' },
-  { title: 'Cultural Workshop', date: 'July 10, 2024', description: 'Learn about Ukrainian traditions and crafts' },
-];
+import { Card, CardContent } from '@/components/ui/card';
+import events from '../config/events.json';
 
 export const Upcoming = () => {
   return (
@@ -17,21 +12,28 @@ export const Upcoming = () => {
       transition={{ duration: 0.5 }}
       className="py-16"
     >
-      <h2 className="text-3xl font-bold text-blue-600 mb-12 text-center">Upcoming <span className="bg-yellow-300 px-2">Events</span></h2>
+      <h2 className="text-3xl font-bold text-blue-600 mb-12 text-center">
+        Upcoming <span className="bg-yellow-300 px-2">Events</span>
+      </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {events.map((event, index) => (
+        {events.events.map((event) => (
           <motion.div
-            key={index}
+            key={event.id}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Card className="h-full">
-              <CardHeader>
-                <CardTitle className="text-blue-600">{event.title}</CardTitle>
-                <CardDescription>{event.date}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p>{event.description}</p>
+              <CardContent className="p-0">
+                <iframe
+                  src={`https://lu.ma/embed/event/${event.id}/simple`}
+                  width="100%"
+                  height="550"
+                  frameBorder="0"
+                  style={{ border: '1px solid #bfcbda88', borderRadius: '4px' }}
+                  allowFullScreen=""
+                  aria-hidden="false"
+                  tabIndex="0"
+                />
               </CardContent>
             </Card>
           </motion.div>

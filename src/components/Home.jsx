@@ -10,7 +10,7 @@ export const Home = () => {
       transition={{ duration: 0.5 }}
       className="text-center py-16"
     >
-      <h2 className="text-4xl font-bold text-blue-600 mb-4">Welcome to <span className="bg-yellow-300 px-2">Creatives for Ukraine UK</span></h2>
+      <h2 className="text-4xl font-bold text-blue-600 mb-4">Welcome to <span className="bg-yellow-300 px-2">Creatives for Ukraine</span></h2>
       <p className="text-xl text-gray-600 mb-8">Supporting Ukrainian artists and creatives in the UK</p>
       <motion.div
         whileHover={{ scale: 1.05 }}

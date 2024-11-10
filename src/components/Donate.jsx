@@ -13,7 +13,7 @@ export const Donate = () => {
     >
       <h2 className="text-3xl font-bold text-blue-600 mb-12">Support Our <span className="bg-yellow-300 px-2">Cause</span></h2>
       <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-        Your donation helps us support Ukrainian artists and creatives in the UK. Every contribution makes a difference.
+        Your donation helps us support Ukraine. Every contribution makes a difference.
       </p>
       <motion.div
         whileHover={{ scale: 1.05 }}

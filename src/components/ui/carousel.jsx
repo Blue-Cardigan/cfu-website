@@ -21,10 +21,10 @@ const Carousel = React.forwardRef((
   {
     orientation = "horizontal",
     opts,
-    setApi,
     plugins,
     className,
     children,
+    onApi,
     ...props
   },
   ref
@@ -64,14 +64,6 @@ const Carousel = React.forwardRef((
   }, [scrollPrev, scrollNext])
 
   React.useEffect(() => {
-    if (!api || !setApi) {
-      return
-    }
-
-    setApi(api)
-  }, [api, setApi])
-
-  React.useEffect(() => {
     if (!api) {
       return
     }
@@ -84,6 +76,12 @@ const Carousel = React.forwardRef((
       api?.off("select", onSelect)
     };
   }, [api, onSelect])
+
+  React.useEffect(() => {
+    if (onApi) {
+      onApi(api);
+    }
+  }, [api, onApi]);
 
   return (
     (<CarouselContext.Provider
