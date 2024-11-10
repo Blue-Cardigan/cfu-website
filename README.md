@@ -1,4 +1,4 @@
-## How To Add Luma Events to the C4U Website
+## How To Add Luma Events to the CfU Website
 
 1. Find the event ID on lu.ma > manage > more > Embed Event > 
 
