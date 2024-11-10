@@ -5,18 +5,15 @@ export const AboutUs = () => {
   const features = [
     {
       title: "Our Mission",
-      description: "Supporting Ukraine through art and creativity, providing a platform for talented individuals to showcase their work.",
-      icon: "🎨"
+      description: "Supporting Ukraine through art and creativity, providing a platform for talented individuals to showcase their work."
     },
     {
       title: "What We Do",
-      description: "Organize events, exhibitions, and workshops to promote Ukrainian culture and raise awareness.",
-      icon: "🎭"
+      description: "Organize events, exhibitions, and workshops to promote Ukrainian culture and raise awareness."
     },
     {
       title: "Our Impact",
-      description: "Foster cultural exchange, create opportunities for Ukrainian creatives, and contribute to the UK's artistic landscape.",
-      icon: "🌟"
+      description: "Foster cultural exchange, create opportunities for Ukrainian creatives, and contribute to the UK's artistic landscape."
     }
   ];
 
@@ -47,7 +44,6 @@ export const AboutUs = () => {
               transition={{ delay: index * 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <span className="text-4xl mb-4 block">{feature.icon}</span>
               <h3 className="text-xl font-semibold text-blue-600 mb-4">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </motion.div>
