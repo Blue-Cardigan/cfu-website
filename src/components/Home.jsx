@@ -11,7 +11,7 @@ export const Home = () => {
       className="text-center py-16"
     >
       <h2 className="text-4xl font-bold text-blue-600 mb-4">Welcome to <span className="bg-yellow-300 px-2">Creatives for Ukraine</span></h2>
-      <p className="text-xl text-gray-600 mb-8">Supporting Ukrainian artists and creatives in the UK</p>
+      <p className="text-xl text-gray-600 mb-8">A cultural initiative that channels creative talent to raise funds and support Ukraine's victory.</p>
       <motion.div
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
