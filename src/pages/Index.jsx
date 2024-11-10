@@ -4,7 +4,8 @@ import { Header } from '@/components/Header';
 import { Home } from '@/components/Home';
 import { Upcoming } from '@/components/Upcoming';
 import { AboutUs } from '@/components/AboutUs';
-import { Donate } from '@/components/Donate';
+import { Newsletter } from '@/components/Newsletter';
+import { Footer } from '@/components/Footer';
 
 const Index = () => {
   return (
@@ -15,8 +16,9 @@ const Index = () => {
         <Home />
         <Upcoming />
         <AboutUs />
-        <Donate />
+        <Newsletter />
       </div>
+      <Footer />
     </div>
   );
 };

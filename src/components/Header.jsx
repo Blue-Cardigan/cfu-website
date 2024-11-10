@@ -1,34 +1,47 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 export const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     element.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-10">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-blue-600">Creatives for Ukraine UK</h1>
-        <div className="flex items-center gap-8">
-          <nav>
-            <ul className="flex space-x-4">
-              {['home', 'upcoming', 'about', 'donate'].map((section) => (
-                <li key={section}>
+    <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
+          <motion.h1 
+            className="text-2xl font-bold text-blue-600"
+            whileHover={{ scale: 1.02 }}
+          >
+            Creatives for Ukraine UK
+          </motion.h1>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            <ul className="flex space-x-2">
+              {['home', 'upcoming', 'about', 'newsletter'].map((section) => (
+                <motion.li 
+                  key={section}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <Button
                     variant="ghost"
                     onClick={() => scrollToSection(section)}
-                    className="text-gray-600 hover:text-blue-600 transition-colors"
+                    className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-full px-6"
                   >
                     {section.charAt(0).toUpperCase() + section.slice(1)}
                   </Button>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </nav>
-          
-          <div className="flex items-center space-x-4">
+
+            <div className="flex items-center space-x-4 border-l pl-4">
             <a
               href="https://www.instagram.com/creatives_for_ukraine/"
               target="_blank"
@@ -59,8 +72,33 @@ export const Header = () => {
                 <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
               </svg>
             </a>
-          </div>
+            </div>
+          </nav>
+
+          {/* Mobile Menu Button */}
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            className="md:hidden p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className="w-6 h-6 flex flex-col justify-around">
+              <span className={`block h-0.5 w-full bg-blue-600 transform transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2.5' : ''}`} />
+              <span className={`block h-0.5 w-full bg-blue-600 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-full bg-blue-600 transform transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
+            </div>
+          </motion.button>
         </div>
+
+        {/* Mobile Menu */}
+        <motion.nav
+          className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}
+          initial={false}
+          animate={isMenuOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {/* Mobile menu content */}
+        </motion.nav>
       </div>
     </header>
   );

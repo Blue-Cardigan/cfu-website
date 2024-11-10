@@ -83,7 +83,7 @@ export const Carousel = () => {
           skipSnaps: false,
           dragThreshold: 20,
         }}
-        className="w-full"
+        className="w-full cursor-grab active:cursor-grabbing"
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         onApi={setApi}
@@ -91,7 +91,7 @@ export const Carousel = () => {
         <CarouselContent>
           {images.map((src, index) => (
             <CarouselItem key={index}>
-              <div className="relative p-1">
+              <div className="relative p-1 aspect-[16/9]">
                 {loading[index] && (
                   <div className="absolute inset-0 bg-gray-200 animate-pulse rounded-lg" />
                 )}
@@ -99,7 +99,7 @@ export const Carousel = () => {
                   src={src} 
                   alt={`Slide ${index + 1}`} 
                   className={cn(
-                    "w-full h-[400px] object-cover rounded-lg transition-opacity duration-300",
+                    "w-full h-full object-cover rounded-lg transition-all duration-300 hover:scale-[1.02]",
                     loading[index] ? "opacity-0" : "opacity-100"
                   )}
                   onLoad={() => handleImageLoad(index)}
@@ -108,8 +108,8 @@ export const Carousel = () => {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className="hidden sm:flex hover:scale-110 transition-transform" />
+        <CarouselNext className="hidden sm:flex hover:scale-110 transition-transform" />
       </CarouselComponent>
 
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">

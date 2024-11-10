@@ -19,17 +19,22 @@ export const Upcoming = () => {
         {events.events.map((event) => (
           <motion.div
             key={event.id}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.02, y: -5 }}
+            whileTap={{ scale: 0.98 }}
+            className="shadow-lg hover:shadow-xl transition-all duration-300"
           >
-            <Card className="h-full">
+            <Card className="h-full overflow-hidden">
               <CardContent className="p-0">
                 <iframe
                   src={`https://lu.ma/embed/event/${event.id}/simple`}
                   width="100%"
-                  height="550"
+                  height="600"
                   frameBorder="0"
-                  style={{ border: '1px solid #bfcbda88', borderRadius: '4px' }}
+                  style={{ 
+                    border: '1px solid #bfcbda88', 
+                    borderRadius: '8px',
+                    transition: 'all 0.3s ease' 
+                  }}
                   allowFullScreen=""
                   aria-hidden="false"
                   tabIndex="0"
