@@ -31,7 +31,7 @@
 ```
 
 3. Commit your changes to GitHub:
-   - Go to the [events.json file](https://github.com/YOUR_REPO/blob/main/src/config/events.json) on GitHub
+   - Go to the [events.json file](https://github.com/Blue-Cardigan/cfu-website/blob/main/src/config/events.json) on GitHub
    - Click the pencil icon (✏️) in the top right corner to edit the file
    - Make your changes to the file
    - Scroll to the bottom of the page
@@ -40,11 +40,9 @@
      - Select "Commit directly to the main branch"
      - Click the green "Commit changes" button
 
-The website will automatically update with your new event within a few minutes. If you don't see your changes after 5 minutes, please contact the development team.
+The website will automatically update with your new event within a few minutes. If you don't see your changes after 5 minutes... contact me!
 
 **Important Notes:**
 - Make sure to keep the JSON format exactly as shown (including the commas and brackets)
-- Only add new events at the top of the list
+- Events will be shown on the website in order, with the one at the top of the list first on the page.
 - Double-check the event ID is correct before committing
-
-Need help? Contact [CONTACT_PERSON] at [EMAIL/SLACK]
