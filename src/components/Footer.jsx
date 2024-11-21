@@ -56,7 +56,7 @@ export const Footer = () => {
               <h4 className="text-xl font-semibold mb-4">Connect With Us</h4>
               <div className="flex space-x-4">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/creatives_for_ukraine/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-100 hover:text-white transition-colors"
@@ -76,7 +76,7 @@ export const Footer = () => {
                     </svg>
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/profile.php?id=61568282291002"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-100 hover:text-white transition-colors"
