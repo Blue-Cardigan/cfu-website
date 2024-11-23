@@ -37,7 +37,7 @@ export const Footer = () => {
                     onClick={() => scrollToSection('upcoming')}
                     className="text-blue-100 hover:text-white transition-colors"
                   >
-                    Upcoming Events
+                    Events
                   </button>
                 </li>
                 <li>

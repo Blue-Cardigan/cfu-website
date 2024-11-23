@@ -79,7 +79,7 @@ export const Home = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="relative z-10">View Upcoming Events</span>
+            <span className="relative z-10">View Events</span>
             <div className="absolute inset-0 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
           </motion.button>
 
