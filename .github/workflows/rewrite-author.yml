@@ -1,0 +1,26 @@
+name: Rewrite Author
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    if: github.event.head_commit.author.email == 'phil.a.lefevre@gmail.com'
+    
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Git
+        run: |
+          git config --global user.name "Red-Cardigan"
+          git config --global user.email "jethro.reeve@gmail.com"
+          
+      - name: Rewrite Last Commit
+        run: |
+          git commit --amend --reset-author --no-edit
+          git push --force origin main 
