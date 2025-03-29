@@ -1,47 +1,43 @@
-## How To Add Luma Events to the CfU Website
+# CFU Website (Next.js Version)
 
-1. Find the event ID on lu.ma > manage > more > Embed Event > 
+This is the Next.js version of the CFU website, providing improved performance and better SEO capabilities.
 
-```
-<a
-  href="https://lu.ma/event/evt-9NdwGwCGgfXmWsU"
-  class="luma-checkout--button"
-  data-luma-action="checkout"
-  data-luma-event-id="evt-9NdwGwCGgfXmWsU" <<<<<< YOU WANT THIS ID
->
-  Register for Event
-</a>
+## Getting Started
 
-<script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js"></script>
+First, install the dependencies:
+
+```bash
+npm install
 ```
 
-2. Go to [events.json file](https://github.com/Blue-Cardigan/cfu-website/blob/main/src/data/events.json)
+Then, run the development server:
 
-
-3. Click the pencil icon (✏️) in the top right corner to edit the file
-
-4. Add the event id as a new entry to the file
-
-```json
-{
-  "events": [
-    {
-      "id": "PASTE_ID_HERE"
-    },
-    {
-      "id": "evt-7IIGiNQSemkFBOB"
-    }
-  ]
-} 
+```bash
+npm run dev
 ```
 
-Hot tip: Copy and paste a previous event to avoid making formatting errors
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-5. Click the big green 'Commit changes...' button, then click 'Commit changes' in the popup (No need to add a long description).
+## Project Structure
 
-6. The website will automatically update with your new event within a few minutes. If you don't see your changes after 5 minutes... contact me!
+- `src/app/` - Contains the Next.js app router pages and layouts
+- `src/components/` - Reusable React components
+- `src/lib/` - Utility functions and shared logic
+- `src/styles/` - Global styles and CSS modules
 
-**Important Notes:**
-- Make sure to keep the JSON format exactly as shown (including the commas and brackets)
-- Events will be shown on the website in order, with the one at the top of the list first on the page.
-- Double-check the event ID is correct before committing
+## Available Scripts
+
+- `npm run dev` - Start the development server
+- `npm run build` - Build the production application
+- `npm start` - Start the production server
+- `npm run lint` - Run ESLint
+
+## Technologies Used
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- Radix UI Components
+- React Query
+- Framer Motion 
