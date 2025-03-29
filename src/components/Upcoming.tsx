@@ -81,7 +81,7 @@ export const Upcoming = () => {
                     borderRadius: '8px',
                     transition: 'all 0.3s ease' 
                   }}
-                  allowFullScreen=""
+                  allowFullScreen={true}
                   aria-hidden="false"
                   tabIndex={0}
                 />

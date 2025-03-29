@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { Header } from '@/components/Header';
@@ -21,22 +21,35 @@ interface ProductWithVariants extends PrintfulProduct {
   variants: Variant[];
   costs?: {
     currency: string;
-    subtotal: number;
-    shipping: number;
+    subtotal: string;
+    shipping: string;
     tax: string;
-    total: number;
+    total: string;
   };
 }
 
 // Helper function to format price in GBP
-const formatPrice = (price: number) => {
+const formatPrice = (price: string) => {
+  const numericPrice = parseFloat(price.replace('£', ''));
   return new Intl.NumberFormat('en-GB', {
     style: 'currency',
     currency: 'GBP',
-  }).format(price);
+  }).format(numericPrice);
 };
 
-export default function ShopPage() {
+// Loading component for Suspense fallback
+const ShopLoading = () => (
+  <div className="min-h-screen bg-gray-50">
+    <div className="max-w-7xl mx-auto py-16 px-4">
+      <div className="flex justify-center items-center min-h-[400px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    </div>
+  </div>
+);
+
+// Main shop content component
+const ShopContent = () => {
   const [products, setProducts] = useState<ProductWithVariants[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -59,7 +72,28 @@ export default function ShopPage() {
     async function fetchProducts() {
       try {
         const fetchedProducts = await getPrintfulProducts();
-        setProducts(fetchedProducts);
+        // Transform Printful products into ProductWithVariants format
+        const transformedProducts = fetchedProducts.map(product => ({
+          ...product,
+          variants: [
+            {
+              size: 'S',
+              price: product.price,
+              available: true
+            },
+            {
+              size: 'M',
+              price: product.price,
+              available: true
+            },
+            {
+              size: 'L',
+              price: product.price,
+              available: true
+            }
+          ]
+        }));
+        setProducts(transformedProducts);
       } catch (err) {
         setError('Failed to load products. Please try again later.');
         console.error('Error loading products:', err);
@@ -95,7 +129,7 @@ export default function ShopPage() {
     console.log('Product data:', product);
 
     // Use the size as the variant identifier since we don't have sync_variants
-    const variantId = selectedSize;
+    const variantId = selectedSize.charCodeAt(0); // Convert size to a number for variantId
 
     // Log the variant information for debugging
     console.log('Adding to cart:', {
@@ -218,11 +252,11 @@ export default function ShopPage() {
                             })
                             .map((variant) => (
                               <option
-                                key={`${product.id}-${variant.size}`}
+                                key={variant.size}
                                 value={variant.size}
                                 disabled={!variant.available}
                               >
-                                {variant.size} - {formatPrice(parseFloat(variant.price.replace('£', '')))}
+                                {variant.size} - {formatPrice(variant.price)}
                                 {!variant.available && ' (Out of Stock)'}
                               </option>
                             ))}
@@ -232,8 +266,8 @@ export default function ShopPage() {
                       <div className="flex justify-between items-center">
                         <span className="text-2xl font-bold text-blue-600">
                           {selectedVariants[product.id]
-                            ? formatPrice(parseFloat(product.variants.find(v => v.size === selectedVariants[product.id])?.price.replace('£', '') || '0'))
-                            : formatPrice(parseFloat(product.price.replace('£', '')))}
+                            ? formatPrice(product.variants.find(v => v.size === selectedVariants[product.id])?.price || '£0')
+                            : formatPrice(product.price)}
                         </span>
                         <button
                           onClick={() => handleAddToCart(product)}
@@ -247,7 +281,7 @@ export default function ShopPage() {
                       {product.costs && (
                         <div className="mt-4 pt-4 border-t text-sm text-gray-600">
                           <p>Shipping: {formatPrice(product.costs.shipping)}</p>
-                          <p>Tax: {formatPrice(parseFloat(product.costs.tax))}</p>
+                          <p>Tax: {formatPrice(product.costs.tax)}</p>
                           <p className="font-semibold">Total: {formatPrice(product.costs.total)}</p>
                         </div>
                       )}
@@ -262,5 +296,14 @@ export default function ShopPage() {
       <Footer />
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
+  );
+};
+
+// Main page component with Suspense
+export default function ShopPage() {
+  return (
+    <Suspense fallback={<ShopLoading />}>
+      <ShopContent />
+    </Suspense>
   );
 } 
