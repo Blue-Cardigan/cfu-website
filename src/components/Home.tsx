@@ -118,7 +118,7 @@ export const Home = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          A cultural initiative that channels creative talent to raise funds and support Ukraine's victory.
+          A cultural initiative that channels creative talent to raise funds and support Ukraine&apos;s victory.
         </motion.p>
       </div>
     </motion.section>
