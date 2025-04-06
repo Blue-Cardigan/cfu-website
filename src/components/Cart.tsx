@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { useCart } from '@/contexts/CartContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast } from 'react-hot-toast';
+import { StripePaymentForm } from './StripePaymentForm';
 
 interface CartProps {
   isOpen: boolean;
@@ -21,13 +22,14 @@ const formatPrice = (price: number) => {
 
 export function Cart({ isOpen, onClose }: CartProps) {
   const { state, dispatch } = useCart();
+  const [showStripePayment, setShowStripePayment] = useState(false);
 
   const total = state.items.reduce((sum, item) => {
     const price = parseFloat(item.price.replace('£', ''));
     return sum + price;
   }, 0);
 
-  const handleCheckout = async () => {
+  const handleCheckoutWithPaypal = async () => {
     try {
       // Log the items being sent to checkout
       console.log('Checkout items:', state.items);
@@ -58,6 +60,22 @@ export function Cart({ isOpen, onClose }: CartProps) {
       console.error('Checkout error:', error);
       toast.error('Failed to start checkout process');
     }
+  };
+
+  const handleCheckoutWithStripe = () => {
+    setShowStripePayment(true);
+  };
+
+  const getPaymentMetadata = () => {
+    return {
+      items: JSON.stringify(
+        state.items.map(item => ({
+          name: item.name,
+          size: item.size,
+          price: item.price,
+        }))
+      ),
+    };
   };
 
   return (
@@ -124,12 +142,30 @@ export function Cart({ isOpen, onClose }: CartProps) {
                       <span className="font-medium">Total:</span>
                       <span className="text-xl font-bold">{formatPrice(total)}</span>
                     </div>
-                    <button
-                      onClick={handleCheckout}
-                      className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors"
-                    >
-                      Checkout with PayPal
-                    </button>
+                    
+                    {showStripePayment ? (
+                      <div className="space-y-4">
+                        <button
+                          onClick={() => setShowStripePayment(false)}
+                          className="text-blue-600 hover:underline mb-2 block"
+                        >
+                          ← Back to payment options
+                        </button>
+                        <StripePaymentForm
+                          amount={total}
+                          metadata={getPaymentMetadata()}
+                        />
+                      </div>
+                    ) : (
+                      <div className="space-y-3">
+                        <button
+                          onClick={handleCheckoutWithStripe}
+                          className="w-full bg-[#635bff] text-white py-3 rounded-full hover:bg-[#4c45e4] transition-colors"
+                        >
+                          Checkout with Stripe
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </>
               )}

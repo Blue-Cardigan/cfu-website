@@ -13,7 +13,7 @@ interface EventsData {
   events: Event[];
 }
 
-export const Upcoming = () => {
+export const Events = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

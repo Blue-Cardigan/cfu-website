@@ -4,8 +4,9 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { Home } from '@/components/Home';
 import { AboutUs } from '@/components/AboutUs';
-import { Upcoming } from '@/components/Upcoming';
+import { Events } from '@/components/Events';
 import { Newsletter } from '@/components/Newsletter';
+import { ShopCarousel } from '@/components/ShopCarousel';
 
 export default function Page() {
   return (
@@ -13,7 +14,11 @@ export default function Page() {
       <Header />
       <main>
         <Home />
-        <Upcoming />
+        <ShopCarousel 
+          title="Gifts of Ukraine" 
+          subtitle="Every purchase supports our mission to help Ukraine through art and creativity."
+        />
+        <Events />
         <AboutUs />
         <Newsletter />
       </main>

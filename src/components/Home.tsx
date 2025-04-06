@@ -120,43 +120,6 @@ export const Home = () => {
         >
           A cultural initiative that channels creative talent to raise funds and support Ukraine's victory.
         </motion.p>
-
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <motion.button
-            onClick={() => scrollToSection('upcoming')}
-            className="group relative px-8 py-4 rounded-full text-lg font-semibold bg-blue-600 text-white overflow-hidden transition-all hover:shadow-lg"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span className="relative z-10">View Events</span>
-            <div className="absolute inset-0 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-          </motion.button>
-
-          <motion.button
-            onClick={() => scrollToSection('newsletter')}
-            className="group relative px-8 py-4 rounded-full text-lg font-semibold border-2 border-blue-600 text-blue-600 overflow-hidden transition-all hover:shadow-lg"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span className="relative z-10 group-hover:text-white">Stay Updated</span>
-            <div className="absolute inset-0 bg-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-          </motion.button>
-
-          <motion.a
-            href="/shop"
-            className="group relative px-8 py-4 rounded-full text-lg font-semibold bg-yellow-300 text-blue-600 overflow-hidden transition-all hover:shadow-lg"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <span className="relative z-10">Shop Now</span>
-            <div className="absolute inset-0 bg-yellow-400 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
-          </motion.a>
-        </motion.div>
       </div>
     </motion.section>
   );
