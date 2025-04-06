@@ -67,6 +67,11 @@ export async function POST(request: Request) {
                 items,
                 address,
                 discount_percentage: discountApplied,
+                payment_details: {
+                  transaction_id: paymentIntent.id,
+                  transaction_amount: paymentIntent.amount / 100, // Convert from cents to dollars/pounds
+                  gateway: 'stripe'
+                }
               }),
             });
             
@@ -77,6 +82,34 @@ export async function POST(request: Request) {
               // Note: We don't throw here to avoid failing the webhook handling
             } else {
               console.log('Printful order created successfully:', printfulResult);
+              
+              // Confirm the order automatically for paid orders
+              if (printfulResult.order_id) {
+                try {
+                  const confirmResponse = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/printful/confirm-order`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                      order_id: printfulResult.order_id,
+                      payment: {
+                        gateway: 'stripe',
+                        transaction_id: paymentIntent.id
+                      }
+                    }),
+                  });
+                  
+                  if (!confirmResponse.ok) {
+                    const confirmError = await confirmResponse.json();
+                    console.error('Failed to confirm paid order:', confirmError);
+                  } else {
+                    console.log('Paid order confirmed successfully');
+                  }
+                } catch (confirmError) {
+                  console.error('Error confirming paid order:', confirmError);
+                }
+              }
             }
           } catch (error) {
             console.error('Error processing order items:', error);

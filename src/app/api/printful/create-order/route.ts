@@ -33,7 +33,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: validationError }, { status: 400 });
     }
     
-    const { items, address, is_free_order = false, discount_percentage = 0 } = data;
+    const { items, address, is_free_order = false, discount_percentage = 0, payment_details } = data;
     
     // Convert discount percentage to a number if it's not already
     const discountPercent = typeof discount_percentage === 'string' 
@@ -70,6 +70,7 @@ export async function POST(request: Request) {
         return {
           sync_variant_id: syncVariant.id,
           quantity: 1,
+          retail_price: syncVariant.retail_price,
         };
       })
     );
@@ -88,6 +89,7 @@ export async function POST(request: Request) {
         phone: address.phone || '',
       },
       items: productDetails,
+      shipping: "STANDARD",
     };
 
     // For free or discounted orders, add special instructions
@@ -96,11 +98,21 @@ export async function POST(request: Request) {
         ? 'Free Order - 100% Discount Applied' 
         : `Order with ${discountPercent}% discount applied`;
       
-      requestBody.retail_costs = {
-        discount: `${discountPercent}%`,
-        total: isFreeOrder ? '0.00' : undefined
-      };
+      // Add discount information - apply to the entire order
+      if (isFreeOrder) {
+        // For free orders, set the retail prices to 0
+        requestBody.retail_costs = {
+          discount: "100%",
+          total: "0.00"
+        };
+      } else {
+        // For partially discounted orders
+        requestBody.retail_costs = {
+          discount: `${discountPercent}%`
+        };
+      }
       
+      // Add notes about the discount
       requestBody.gift = {
         subject: discountNote
       };
@@ -109,9 +121,13 @@ export async function POST(request: Request) {
       requestBody.packing_slip = {
         message: discountNote
       };
+      
+      // Add external notes visible to the store owner
+      requestBody.external_id = `DISCOUNT-${discountPercent}`;
+      requestBody.notes = discountNote;
     }
 
-    // Create order in Printful with the provided address
+    // Create draft order in Printful with the provided address
     const orderResponse = await fetch('https://api.printful.com/orders', {
       method: 'POST',
       headers: {
@@ -130,27 +146,44 @@ export async function POST(request: Request) {
     const orderData = await orderResponse.json();
     console.log('Printful order created successfully:', orderData);
 
-    // For free orders, we need to confirm the order to proceed with fulfillment
-    if (isFreeOrder) {
+    // For free orders or orders with payment details, confirm the order
+    if (isFreeOrder || payment_details) {
       try {
+        const confirmPayload: any = {};
+        
+        if (isFreeOrder) {
+          // Add payment information for free orders
+          confirmPayload.payment = {
+            gateway: "manual",
+            transaction_id: `FREE-ORDER-${new Date().getTime()}`
+          };
+        } else if (payment_details) {
+          // Add payment information from the payment provider
+          confirmPayload.payment = {
+            gateway: payment_details.gateway || "stripe",
+            transaction_id: payment_details.transaction_id
+          };
+        }
+        
         const confirmResponse = await fetch(`https://api.printful.com/orders/${orderData.result.id}/confirm`, {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${env.PRINTFUL_API_KEY}`,
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify(confirmPayload),
         });
         
         if (!confirmResponse.ok) {
           const errorData = await confirmResponse.json();
-          console.error('Failed to confirm free order:', errorData);
+          console.error('Failed to confirm order:', errorData);
           // We'll still return success for the order creation
         } else {
           const confirmData = await confirmResponse.json();
-          console.log('Free order confirmed successfully:', confirmData);
+          console.log('Order confirmed successfully:', confirmData);
         }
       } catch (confirmError) {
-        console.error('Error confirming free order:', confirmError);
+        console.error('Error confirming order:', confirmError);
         // We'll still return success for the order creation
       }
     }

@@ -98,6 +98,12 @@ export function Cart({ isOpen, onClose }: CartProps) {
           })),
           address: shippingAddress,
           is_free_order: true,
+          discount_percentage: 100,
+          // Include a transaction ID for tracking
+          payment_details: {
+            gateway: 'manual',
+            transaction_id: `FREE-ORDER-${new Date().getTime()}`
+          }
         }),
       });
 
