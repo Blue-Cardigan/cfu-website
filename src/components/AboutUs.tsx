@@ -56,17 +56,6 @@ export const AboutUs = () => {
             </motion.div>
           ))}
         </div>
-
-        <motion.div 
-          className="bg-blue-50 rounded-2xl p-8 md:p-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-        >
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Your support helps us continue our mission and make a positive impact on the lives of Ukrainians.
-          </p>
-        </motion.div>
       </div>
     </motion.section>
   );
