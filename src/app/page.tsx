@@ -14,12 +14,12 @@ export default function Page() {
       <Header />
       <main>
         <Home />
+        <AboutUs />
         <ShopCarousel 
           title="Gifts of Ukraine" 
           subtitle="Every purchase supports our mission to help Ukraine through art and creativity."
         />
         <Events />
-        <AboutUs />
         <Newsletter />
       </main>
       <Footer />

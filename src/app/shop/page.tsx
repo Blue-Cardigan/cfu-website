@@ -48,6 +48,50 @@ const ShopLoading = () => (
   </div>
 );
 
+// Payment Confirmation Modal
+function PaymentConfirmationModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div 
+        className="fixed inset-0 bg-black bg-opacity-50"
+        onClick={onClose}
+      />
+      <div className="relative bg-white rounded-xl shadow-2xl p-8 max-w-md w-full mx-4 animate-slideUp">
+        <button 
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+        >
+          ✕
+        </button>
+        <div className="text-center">
+          <div className="w-20 h-20 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-6">
+            <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Payment Successful!</h2>
+          <p className="text-gray-600 mb-6">
+            Thank you for your purchase. Your order has been confirmed and is being processed.
+          </p>
+          <div className="border-t border-gray-200 pt-6 mt-6">
+            <p className="text-sm text-gray-500 mb-4">
+              A confirmation email will be sent to your inbox shortly.
+            </p>
+            <button
+              onClick={onClose}
+              className="px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Continue Shopping
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // Main shop content component
 const ShopContent = () => {
   const [products, setProducts] = useState<ProductWithVariants[]>([]);
@@ -55,18 +99,26 @@ const ShopContent = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedVariants, setSelectedVariants] = useState<Record<number, string>>({});
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { dispatch } = useCart();
+  const [paymentSuccess, setPaymentSuccess] = useState(false);
+  const { state, dispatch } = useCart();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     // Show success/error messages from URL params
-    if (searchParams.get('success')) {
+    const status = searchParams.get('payment_status');
+    if (status === 'success') {
+      setPaymentSuccess(true);
+      // Clear the cart when payment is successful
+      dispatch({ type: 'CLEAR_CART' });
+      toast.success('Thank you for your purchase! Your order has been confirmed.');
+    } else if (searchParams.get('success')) {
+      // Legacy parameter for PayPal
       toast.success('Thank you for your purchase!');
+      dispatch({ type: 'CLEAR_CART' });
+    } else if (searchParams.get('canceled')) {
+      toast.error('Checkout was canceled. Your cart items are still saved.');
     }
-    if (searchParams.get('canceled')) {
-      toast.error('Checkout was canceled.');
-    }
-  }, [searchParams]);
+  }, [searchParams, dispatch]);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -295,6 +347,10 @@ const ShopContent = () => {
       </main>
       <Footer />
       <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <PaymentConfirmationModal 
+        isOpen={paymentSuccess} 
+        onClose={() => setPaymentSuccess(false)} 
+      />
     </>
   );
 };
