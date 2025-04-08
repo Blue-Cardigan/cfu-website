@@ -119,9 +119,9 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
                   <motion.div
                     key={product.id}
                     whileHover={{ y: -5 }}
-                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all"
+                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all flex flex-col"
                   >
-                    <div className="relative h-64">
+                    <div className="relative w-full aspect-square">
                       <Image
                         src={product.image}
                         alt={product.name}
@@ -130,10 +130,11 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
-                    <div className="p-5">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
-                      <p className="text-gray-600 mb-4 line-clamp-2">{product.description}</p>
-                      <div className="flex justify-between items-center">
+                    <div className="p-5 flex-grow flex flex-col justify-between">
+                      <div>
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name.replace('Creatives For Ukraine logo', '').replace('I\'ll Wear The Suit When The War Is Over ', '').trim().replace(/^\w/, (c) => c.toUpperCase())}</h3>
+                      </div>
+                      <div className="flex justify-between items-center mt-4">
                         <span className="text-blue-600 font-bold">{formatPrice(product.price)}</span>
                         <Link 
                           href="/shop" 
