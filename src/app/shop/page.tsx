@@ -271,13 +271,12 @@ const ShopContent = () => {
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name}</h3>
-                      <p className="text-gray-600 mb-4">{product.description}</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name.replace('Creatives For Ukraine logo', '').replace('I\'ll Wear The Suit When The War Is Over ', '').trim().replace(/^\w/, (c) => c.toUpperCase())}</h3>
                       
                       {/* Size Selection Dropdown */}
                       <div className="mb-4">

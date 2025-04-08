@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
@@ -26,19 +27,31 @@ export const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <ul className="flex space-x-2">
-              {['home', 'upcoming', 'about', 'newsletter'].map((section) => (
+              {['home', 'shop', 'upcoming', 'about', 'newsletter'].map((section) => (
                 <motion.li 
                   key={section}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button
-                    variant="ghost"
-                    onClick={() => scrollToSection(section)}
-                    className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-full px-6"
-                  >
-                    {section.charAt(0).toUpperCase() + section.slice(1)}
-                  </Button>
+                  {section === 'shop' ? (
+                    <Link href="/shop" passHref legacyBehavior>
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-full px-6"
+                      >
+                        <a>Shop</a>
+                      </Button>
+                    </Link>
+                  ) : (
+                    <Button
+                      variant="ghost"
+                      onClick={() => scrollToSection(section)}
+                      className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all rounded-full px-6"
+                    >
+                      {section.charAt(0).toUpperCase() + section.slice(1)}
+                    </Button>
+                  )}
                 </motion.li>
               ))}
             </ul>
