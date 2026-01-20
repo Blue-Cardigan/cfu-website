@@ -7,8 +7,8 @@ import { Toaster } from 'sonner'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'CFU Website',
-  description: 'CFU Website built with Next.js',
+  title: 'Creatives for Ukraine',
+  description: 'Make a positive impact on the lives of Ukrainians.',
 }
 
 export default function RootLayout({
