@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { RoughNotation } from 'react-rough-notation';
 
 // Add these images to your public folder
 const backgroundImages = [
@@ -42,17 +43,20 @@ export const Home = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative py-24 overflow-hidden min-h-screen"
+      className="relative py-32 overflow-hidden min-h-screen flex items-center justify-center"
     >
       {/* Background Carousel */}
       <div className="absolute inset-0">
         <AnimatePresence mode="popLayout">
           <motion.div
             key={currentImageIndex}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 1.0 }}
+            animate={{ opacity: 1, scale: 1.1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            transition={{ 
+              opacity: { duration: 1, ease: "easeInOut" },
+              scale: { duration: 7, ease: "linear" }
+            }}
             className="absolute inset-0"
           >
             <Image
@@ -81,34 +85,18 @@ export const Home = () => {
           transition={{ delay: 0.2 }}
         >
           Welcome to{" "}
-          <span className="relative inline-block">
-            <motion.span 
-              className="relative z-10 px-3 py-1"
+          <span className="relative inline-block z-10">
+            <RoughNotation 
+              type="highlight" 
+              show={true} 
+              color="#FCD34D" 
+              animationDelay={1000}
+              animationDuration={2000}
+              multiline={true}
+              padding={[10, 20, 10, 20]}
             >
-              Creatives for Ukraine
-            </motion.span>
-            <motion.svg
-              viewBox="0 0 300 50"
-              className="absolute inset-0 w-full h-full"
-              initial="hidden"
-              animate="visible"
-              preserveAspectRatio="none"
-            >
-              <motion.path
-                d="M0,25 C75,25 75,25 150,25 C225,25 225,25 300,25"
-                fill="none"
-                stroke="#FCD34D"
-                strokeWidth="40"
-                className="stroke-yellow-300"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ 
-                  duration: 3,
-                  delay: 1.5,
-                  ease: "easeInOut"
-                }}
-              />
-            </motion.svg>
+              <span className="relative z-10 px-2">Creatives for Ukraine</span>
+            </RoughNotation>
           </span>
         </motion.h2>
         
