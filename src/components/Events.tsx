@@ -29,8 +29,8 @@ export const Events = () => {
         transition={{ duration: 0.5 }}
         className="py-16"
       >
-        <h2 className="text-3xl font-bold text-blue-600 mb-12 text-center">
-          Upcoming <span className="bg-yellow-300 px-2">Events</span>
+        <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">
+          Upcoming <span className="bg-brand-yellow px-2">Events</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {(events as EventsData).events.map((event) => (
@@ -58,8 +58,8 @@ export const Events = () => {
       transition={{ duration: 0.5 }}
       className="py-16"
     >
-      <h2 className="text-3xl font-bold text-blue-600 mb-12 text-center">
-        Upcoming <span className="bg-yellow-300 px-2">Events</span>
+      <h2 className="text-3xl font-bold text-brand-blue mb-12 text-center">
+        Upcoming <span className="bg-brand-yellow px-2">Events</span>
       </h2>
       
       <div className="flex flex-col gap-8">

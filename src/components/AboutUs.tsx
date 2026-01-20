@@ -34,11 +34,11 @@ export const AboutUs = () => {
     >
       <div className="max-w-7xl mx-auto px-4">
         <motion.h2 
-          className="text-4xl font-bold text-blue-600 mb-16 text-center"
+          className="text-4xl font-bold text-brand-blue mb-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          About <span className="bg-yellow-300 px-3 py-1 rounded-lg">Us</span>
+          About <span className="bg-brand-yellow px-3 py-1 rounded-lg">Us</span>
         </motion.h2>
 
         <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -51,7 +51,7 @@ export const AboutUs = () => {
               transition={{ delay: index * 0.2 }}
               whileHover={{ y: -5 }}
             >
-              <h3 className="text-xl font-semibold text-blue-600 mb-4">{feature.title}</h3>
+              <h3 className="text-xl font-semibold text-brand-blue mb-4">{feature.title}</h3>
               <p className="text-gray-600">{feature.description}</p>
             </motion.div>
           ))}

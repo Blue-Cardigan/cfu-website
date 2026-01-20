@@ -58,7 +58,7 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
   return (
     <section className="py-16 bg-gray-50 overflow-hidden relative">
       {/* Visual Separator */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-yellow-400 to-blue-500 opacity-70"></div>
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-lightBlue via-yellow-400 to-brand-lightBlue opacity-70"></div>
       
       <div className="max-w-7xl mx-auto px-4">
         <motion.div 
@@ -67,13 +67,13 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-600 mb-4">{title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-blue mb-4">{title}</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
         </motion.div>
 
         {isLoading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
           </div>
         ) : products.length === 0 ? (
           <div className="text-center text-gray-500 py-12">
@@ -89,7 +89,7 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
                   className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-2 shadow-md"
                   aria-label="Previous products"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
@@ -98,7 +98,7 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
                   className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-2 shadow-md"
                   aria-label="Next products"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-blue" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>
@@ -135,10 +135,10 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
                         <h3 className="text-xl font-semibold text-gray-900 mb-2">{product.name.replace('Creatives For Ukraine logo', '').replace('I\'ll Wear The Suit When The War Is Over ', '').trim().replace(/^\w/, (c) => c.toUpperCase())}</h3>
                       </div>
                       <div className="flex justify-between items-center mt-4">
-                        <span className="text-blue-600 font-bold">{formatPrice(product.price)}</span>
+                        <span className="text-brand-blue font-bold">{formatPrice(product.price)}</span>
                         <Link 
                           href="/shop" 
-                          className="px-4 py-2 bg-yellow-300 text-blue-600 rounded-full font-semibold hover:bg-yellow-400 transition-colors"
+                          className="px-4 py-2 bg-brand-yellow text-brand-blue rounded-full font-semibold hover:opacity-90 transition-opacity"
                         >
                           View Details
                         </Link>
@@ -156,7 +156,7 @@ export const ShopCarousel = ({ title = "Shop our Collection", subtitle = "Suppor
                   <button
                     key={index}
                     onClick={() => setCurrentPage(index)}
-                    className={`w-3 h-3 rounded-full ${currentPage === index ? 'bg-blue-600' : 'bg-gray-300'} transition-colors`}
+                    className={`w-3 h-3 rounded-full ${currentPage === index ? 'bg-brand-blue' : 'bg-gray-300'} transition-colors`}
                     aria-label={`Go to page ${index + 1}`}
                   />
                 ))}

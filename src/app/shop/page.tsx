@@ -42,7 +42,7 @@ const ShopLoading = () => (
   <div className="min-h-screen bg-gray-50">
     <div className="max-w-7xl mx-auto py-16 px-4">
       <div className="flex justify-center items-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
       </div>
     </div>
   </div>
@@ -81,7 +81,7 @@ function PaymentConfirmationModal({ isOpen, onClose }: { isOpen: boolean; onClos
             </p>
             <button
               onClick={onClose}
-              className="px-6 py-3 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-colors"
+              className="px-6 py-3 bg-brand-blue text-white rounded-full font-semibold hover:bg-brand-darkBlue transition-colors"
             >
               Continue Shopping
             </button>
@@ -220,16 +220,16 @@ const ShopContent = () => {
           <div className="max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-8">
               <motion.h1 
-                className="text-4xl font-bold text-blue-600"
+                className="text-4xl font-bold text-brand-blue"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
               >
-                Support Through <span className="bg-yellow-300 px-3 py-1 rounded-lg">Art</span>
+                Support Through <span className="bg-brand-yellow px-3 py-1 rounded-lg">Art</span>
               </motion.h1>
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                className="relative px-4 py-2 bg-brand-blue text-white rounded-full hover:bg-brand-darkBlue transition-colors"
               >
                 Cart
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -250,7 +250,7 @@ const ShopContent = () => {
 
             {isLoading ? (
               <div className="flex justify-center items-center min-h-[400px]">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-blue"></div>
               </div>
             ) : error ? (
               <div className="text-center text-red-600 py-8">
@@ -286,7 +286,7 @@ const ShopContent = () => {
                         <select
                           value={selectedVariants[product.id] || ''}
                           onChange={(e) => handleSizeSelect(product.id, e.target.value)}
-                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-lightBlue"
                         >
                           <option key={`${product.id}-default`} value="">Choose a size</option>
                           {product.variants
@@ -315,14 +315,14 @@ const ShopContent = () => {
                       </div>
 
                       <div className="flex justify-between items-center">
-                        <span className="text-2xl font-bold text-blue-600">
+                        <span className="text-2xl font-bold text-brand-blue">
                           {selectedVariants[product.id]
                             ? formatPrice(product.variants.find(v => v.size === selectedVariants[product.id])?.price || '£0')
                             : formatPrice(product.price)}
                         </span>
                         <button
                           onClick={() => handleAddToCart(product)}
-                          className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                          className="px-6 py-2 bg-brand-blue text-white rounded-full hover:bg-brand-darkBlue transition-colors"
                         >
                           Add to Cart
                         </button>

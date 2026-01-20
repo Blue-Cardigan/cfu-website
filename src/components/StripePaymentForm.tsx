@@ -105,7 +105,7 @@ function PaymentForm({ clientSecret, returnUrl, onSuccess }: PaymentFormProps) {
       <PaymentElement />
       <button
         disabled={isLoading || !stripe || !elements || paymentStatus === 'processing'}
-        className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-brand-blue text-white py-3 rounded-full hover:bg-brand-darkBlue transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading || paymentStatus === 'processing' ? (
           <span className="flex items-center justify-center">

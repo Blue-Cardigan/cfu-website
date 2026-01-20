@@ -79,7 +79,7 @@ export const Home = () => {
       {/* Content */}
       <div className="max-w-4xl mx-auto text-center px-4 relative">
         <motion.h2 
-          className="text-5xl md:text-6xl font-bold text-blue-600 mb-6"
+          className="text-5xl md:text-6xl font-bold text-brand-blue mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -89,7 +89,7 @@ export const Home = () => {
             <RoughNotation 
               type="highlight" 
               show={true} 
-              color="#FCD34D" 
+              color="#F6BD60" 
               animationDelay={1000}
               animationDuration={2000}
               multiline={true}

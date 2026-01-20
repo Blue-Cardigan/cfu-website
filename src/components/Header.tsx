@@ -75,7 +75,7 @@ export const Header = () => {
                       variant="ghost"
                       className={`transition-all rounded-full px-6 ${
                         !isTransparent
-                          ? 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                          ? 'text-gray-600 hover:text-brand-blue hover:bg-blue-50'
                           : 'text-white hover:text-white hover:bg-white/20'
                       }`}
                     >
@@ -88,7 +88,7 @@ export const Header = () => {
                         onClick={() => scrollToSection(section)}
                         className={`transition-all rounded-full px-6 ${
                           !isTransparent
-                            ? 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                            ? 'text-gray-600 hover:text-brand-blue hover:bg-blue-50'
                             : 'text-white hover:text-white hover:bg-white/20'
                         }`}
                       >
@@ -98,7 +98,7 @@ export const Header = () => {
                       <Button
                         asChild
                         variant="ghost"
-                        className="transition-all rounded-full px-6 text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                        className="transition-all rounded-full px-6 text-gray-600 hover:text-brand-blue hover:bg-blue-50"
                       >
                         <Link href={`/#${section}`}>
                           {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -123,7 +123,7 @@ export const Header = () => {
                   rel="noopener noreferrer"
                   className={`transition-colors ${
                     !isTransparent
-                      ? 'text-gray-600 hover:text-blue-600'
+                      ? 'text-gray-600 hover:text-brand-blue'
                       : 'text-white hover:text-white/80'
                   }`}
                 >
@@ -144,13 +144,13 @@ export const Header = () => {
           >
             <div className="w-6 h-6 flex flex-col justify-around">
               <span className={`block h-0.5 w-full transform transition-all duration-300 ${
-                isMenuOpen ? 'bg-blue-600 rotate-45 translate-y-2.5' : (!isTransparent ? 'bg-blue-600' : 'bg-white')
+                isMenuOpen ? 'bg-brand-blue rotate-45 translate-y-2.5' : (!isTransparent ? 'bg-brand-blue' : 'bg-white')
               }`} />
               <span className={`block h-0.5 w-full transition-all duration-300 ${
-                isMenuOpen ? 'opacity-0 bg-blue-600' : (!isTransparent ? 'bg-blue-600' : 'bg-white')
+                isMenuOpen ? 'opacity-0 bg-brand-blue' : (!isTransparent ? 'bg-brand-blue' : 'bg-white')
               }`} />
               <span className={`block h-0.5 w-full transform transition-all duration-300 ${
-                isMenuOpen ? 'bg-blue-600 -rotate-45 -translate-y-2.5' : (!isTransparent ? 'bg-blue-600' : 'bg-white')
+                isMenuOpen ? 'bg-brand-blue -rotate-45 -translate-y-2.5' : (!isTransparent ? 'bg-brand-blue' : 'bg-white')
               }`} />
             </div>
           </motion.button>

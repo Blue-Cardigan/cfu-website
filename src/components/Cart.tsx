@@ -175,7 +175,7 @@ export function Cart({ isOpen, onClose }: CartProps) {
         <div className="space-y-4">
           <button
             onClick={() => setShowStripePayment(false)}
-            className="text-blue-600 hover:underline mb-2 block"
+            className="text-brand-blue hover:underline mb-2 block"
           >
             ← Back
           </button>
@@ -196,7 +196,7 @@ export function Cart({ isOpen, onClose }: CartProps) {
             placeholder="Discount code"
             value={discountCode}
             onChange={(e) => setDiscountCode(e.target.value)}
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-1 focus:ring-blue-500"
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-l-full focus:outline-none focus:ring-1 focus:ring-brand-lightBlue"
           />
           <button
             onClick={handleApplyDiscount}
@@ -273,7 +273,7 @@ export function Cart({ isOpen, onClose }: CartProps) {
                         <div className="flex-1">
                           <h3 className="font-medium">{item.name}</h3>
                           <p className="text-sm text-gray-500">Size: {item.size}</p>
-                          <p className="text-blue-600 font-medium">{formatPrice(parseFloat(item.price.replace('£', '')))}</p>
+                          <p className="text-brand-blue font-medium">{formatPrice(parseFloat(item.price.replace('£', '')))}</p>
                         </div>
                         <button
                           onClick={() => dispatch({ type: 'REMOVE_ITEM', payload: index })}

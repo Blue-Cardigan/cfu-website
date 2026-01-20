@@ -108,7 +108,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border ${errors.name ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-md border ${errors.name ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue`}
           />
           {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name}</p>}
         </div>
@@ -121,7 +121,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border ${errors.email ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-md border ${errors.email ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue`}
           />
           {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
         </div>
@@ -134,7 +134,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
             name="address1"
             value={formData.address1}
             onChange={handleChange}
-            className={`mt-1 block w-full rounded-md border ${errors.address1 ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+            className={`mt-1 block w-full rounded-md border ${errors.address1 ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue`}
           />
           {errors.address1 && <p className="mt-1 text-sm text-red-600">{errors.address1}</p>}
         </div>
@@ -147,7 +147,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
             name="address2"
             value={formData.address2}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue"
           />
         </div>
 
@@ -160,7 +160,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
               name="city"
               value={formData.city}
               onChange={handleChange}
-              className={`mt-1 block w-full rounded-md border ${errors.city ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+              className={`mt-1 block w-full rounded-md border ${errors.city ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue`}
             />
             {errors.city && <p className="mt-1 text-sm text-red-600">{errors.city}</p>}
           </div>
@@ -173,7 +173,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
               name="state_code"
               value={formData.state_code}
               onChange={handleChange}
-              className={`mt-1 block w-full rounded-md border ${errors.state_code ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+              className={`mt-1 block w-full rounded-md border ${errors.state_code ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue`}
             />
             {errors.state_code && <p className="mt-1 text-sm text-red-600">{errors.state_code}</p>}
           </div>
@@ -187,7 +187,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
               name="country_code"
               value={formData.country_code}
               onChange={handleChange}
-              className={`mt-1 block w-full rounded-md border ${errors.country_code ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+              className={`mt-1 block w-full rounded-md border ${errors.country_code ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue`}
             >
               {countries.map((country) => (
                 <option key={country.code} value={country.code}>
@@ -206,7 +206,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
               name="zip"
               value={formData.zip}
               onChange={handleChange}
-              className={`mt-1 block w-full rounded-md border ${errors.zip ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500`}
+              className={`mt-1 block w-full rounded-md border ${errors.zip ? 'border-red-500' : 'border-gray-300'} px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue`}
             />
             {errors.zip && <p className="mt-1 text-sm text-red-600">{errors.zip}</p>}
           </div>
@@ -220,7 +220,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-blue-500"
+            className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-brand-lightBlue focus:outline-none focus:ring-brand-lightBlue"
           />
         </div>
 
@@ -234,7 +234,7 @@ export function AddressForm({ onSubmit, onCancel }: AddressFormProps) {
           </button>
           <button
             type="submit"
-            className="flex-1 bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition-colors"
+            className="flex-1 bg-brand-blue text-white py-3 rounded-full hover:bg-brand-darkBlue transition-colors"
           >
             Continue to Payment
           </button>
