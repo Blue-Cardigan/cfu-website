@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 // This is a server component, so we create Stripe instance here directly
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-03-31.basil',
+  apiVersion: '2025-08-27.basil', // Updated to match latest type definition
 });
 
 export async function POST(request: Request) {

@@ -2,14 +2,23 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   React.useEffect(() => {
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -26,25 +35,29 @@ export const Header = () => {
     element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
+  const isTransparent = isHome && !scrolled && !isMenuOpen;
+
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled || isMenuOpen
+        !isTransparent
           ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' 
           : 'bg-transparent py-4'
       }`}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto pl-0">
         <div className="flex justify-between items-center">
-          <motion.h1 
-            className={`text-2xl font-bold transition-colors duration-300 ${
-              scrolled || isMenuOpen
-                ? 'text-blue-600' 
-                : 'text-white'
-            }`}
-            whileHover={{ scale: 1.02 }}
-          >
-            Creatives for Ukraine UK
+          <motion.h1 className="text-2xl font-bold" whileHover={{ scale: 1.02 }}>
+            <Link href="/" aria-label="Creatives for Ukraine UK">
+              <Image
+                src="/logo-text-right.png"
+                alt="Creatives for Ukraine UK"
+                width={160}
+                height={20}
+                priority
+                className={isTransparent ? 'h-auto w-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]' : 'h-auto w-auto'}
+              />
+            </Link>
           </motion.h1>
 
           {/* Desktop Navigation */}
@@ -61,7 +74,7 @@ export const Header = () => {
                       asChild
                       variant="ghost"
                       className={`transition-all rounded-full px-6 ${
-                        scrolled
+                        !isTransparent
                           ? 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
                           : 'text-white hover:text-white hover:bg-white/20'
                       }`}
@@ -69,17 +82,29 @@ export const Header = () => {
                       <Link href="/shop">Shop</Link>
                     </Button>
                   ) : (
-                    <Button
-                      variant="ghost"
-                      onClick={() => scrollToSection(section)}
-                      className={`transition-all rounded-full px-6 ${
-                        scrolled
-                          ? 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
-                          : 'text-white hover:text-white hover:bg-white/20'
-                      }`}
-                    >
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
-                    </Button>
+                    isHome ? (
+                      <Button
+                        variant="ghost"
+                        onClick={() => scrollToSection(section)}
+                        className={`transition-all rounded-full px-6 ${
+                          !isTransparent
+                            ? 'text-gray-600 hover:text-blue-600 hover:bg-blue-50'
+                            : 'text-white hover:text-white hover:bg-white/20'
+                        }`}
+                      >
+                        {section.charAt(0).toUpperCase() + section.slice(1)}
+                      </Button>
+                    ) : (
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className="transition-all rounded-full px-6 text-gray-600 hover:text-blue-600 hover:bg-blue-50"
+                      >
+                        <Link href={`/#${section}`}>
+                          {section.charAt(0).toUpperCase() + section.slice(1)}
+                        </Link>
+                      </Button>
+                    )
                   )}
                 </motion.li>
               ))}
@@ -97,7 +122,7 @@ export const Header = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`transition-colors ${
-                    scrolled
+                    !isTransparent
                       ? 'text-gray-600 hover:text-blue-600'
                       : 'text-white hover:text-white/80'
                   }`}
@@ -119,13 +144,13 @@ export const Header = () => {
           >
             <div className="w-6 h-6 flex flex-col justify-around">
               <span className={`block h-0.5 w-full transform transition-all duration-300 ${
-                isMenuOpen ? 'bg-blue-600 rotate-45 translate-y-2.5' : (scrolled ? 'bg-blue-600' : 'bg-white')
+                isMenuOpen ? 'bg-blue-600 rotate-45 translate-y-2.5' : (!isTransparent ? 'bg-blue-600' : 'bg-white')
               }`} />
               <span className={`block h-0.5 w-full transition-all duration-300 ${
-                isMenuOpen ? 'opacity-0 bg-blue-600' : (scrolled ? 'bg-blue-600' : 'bg-white')
+                isMenuOpen ? 'opacity-0 bg-blue-600' : (!isTransparent ? 'bg-blue-600' : 'bg-white')
               }`} />
               <span className={`block h-0.5 w-full transform transition-all duration-300 ${
-                isMenuOpen ? 'bg-blue-600 -rotate-45 -translate-y-2.5' : (scrolled ? 'bg-blue-600' : 'bg-white')
+                isMenuOpen ? 'bg-blue-600 -rotate-45 -translate-y-2.5' : (!isTransparent ? 'bg-blue-600' : 'bg-white')
               }`} />
             </div>
           </motion.button>
@@ -148,12 +173,22 @@ export const Header = () => {
                        Shop
                     </Link>
                  ) : (
-                    <button 
-                      onClick={() => { scrollToSection(section); setIsMenuOpen(false); }}
-                      className="block w-full text-left py-2 px-4 text-gray-800 hover:bg-gray-100 rounded"
-                    >
-                      {section.charAt(0).toUpperCase() + section.slice(1)}
-                    </button>
+                    isHome ? (
+                      <button 
+                        onClick={() => { scrollToSection(section); setIsMenuOpen(false); }}
+                        className="block w-full text-left py-2 px-4 text-gray-800 hover:bg-gray-100 rounded"
+                      >
+                        {section.charAt(0).toUpperCase() + section.slice(1)}
+                      </button>
+                    ) : (
+                      <Link
+                        href={`/#${section}`}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block py-2 px-4 text-gray-800 hover:bg-gray-100 rounded"
+                      >
+                        {section.charAt(0).toUpperCase() + section.slice(1)}
+                      </Link>
+                    )
                  )}
               </li>
             ))}

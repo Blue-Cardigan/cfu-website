@@ -7,7 +7,7 @@ dotenv.config();
 // Server-side Stripe client (only used in server components/API routes)
 export const stripe = typeof window === 'undefined' 
   ? new Stripe(process.env.STRIPE_SECRET_KEY!, {
-      apiVersion: '2025-03-31.basil',
+      apiVersion: '2025-08-27.basil',
     })
   : null;
 
