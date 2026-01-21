@@ -1,14 +1,8 @@
 import type { MetadataRoute } from "next";
+import { getBaseUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const raw = process.env.NEXT_PUBLIC_BASE_URL?.trim();
-  const baseUrl = (
-    raw && (raw.startsWith("http://") || raw.startsWith("https://"))
-      ? raw
-      : raw
-        ? `https://${raw}`
-        : "https://creativesforukraine.uk"
-  ).replace(/\/$/, "");
+  const baseUrl = getBaseUrl().replace(/\/$/, "");
   const now = new Date();
 
   const routes = ["", "/shop"] as const;

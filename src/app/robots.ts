@@ -1,13 +1,8 @@
 import type { MetadataRoute } from "next";
+import { getBaseUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
-  const raw = process.env.NEXT_PUBLIC_BASE_URL?.trim();
-  const baseUrl =
-    raw && (raw.startsWith("http://") || raw.startsWith("https://"))
-      ? raw
-      : raw
-        ? `https://${raw}`
-        : "https://creativesforukraine.uk";
+  const baseUrl = getBaseUrl();
 
   return {
     rules: [
