@@ -16,7 +16,7 @@ export const AboutUs = () => {
     },
     {
       title: "What We Do",
-      description: "Organize events, exhibitions, and workshops to promote Ukrainian culture and raise awareness."
+      description: "Organise events, exhibitions, and workshops to promote Ukrainian culture and raise awareness."
     },
     {
       title: "Our Impact",

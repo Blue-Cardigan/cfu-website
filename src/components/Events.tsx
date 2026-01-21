@@ -71,7 +71,7 @@ export const Events = () => {
             whileTap={{ scale: 0.99 }}
             className="shadow-xl hover:shadow-2xl transition-all duration-300 w-full"
           >
-            <Card className="h-full overflow-hidden border-2 border-yellow-300">
+            <Card className="h-full overflow-hidden border-2 border-brand-yellow">
               <CardContent className="p-0 h-full">
                 <iframe
                   src={`https://lu.ma/embed/event/${(events as EventsData).events[0].id}/simple`}

@@ -181,7 +181,7 @@ export function StripePaymentForm({ amount, onSuccess, metadata }: StripePayment
   }, [amount, metadata, stripeInitialized]);
 
   if (!stripeInitialized) {
-    return <div className="text-center py-4">Initializing payment system...</div>;
+    return <div className="text-center py-4">Initialising payment system...</div>;
   }
 
   if (isLoading) {
